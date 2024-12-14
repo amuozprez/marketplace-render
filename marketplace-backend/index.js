@@ -6,9 +6,12 @@ const cors = require("cors");
 const path = require("path");
 const upload = require("./upload"); // Importar la configuración de Multer
 const productRoutes = require("./routes/productRoutes");
+const { getUserById } = require("./consultas");
 const { authenticateToken } = require("./middlewares");
 
 const app = express();
+
+const router = express.Router();
 
 require("dotenv").config();
 const DATABASE_URL = process.env.DATABASE_URL;
@@ -79,33 +82,17 @@ app.post("/api/users/login", async (req, res) => {
   }
 });
 
-app.get("/api/users/me", authenticateToken, async (req, res) => {
-  try {
-    const user = await pool.query(
-      "SELECT id, name, email, edad, comuna, acerca_de_mi FROM users WHERE id = $1",
-      [req.user.id]
-    );
-    if (user.rows.length === 0) {
-      return res.status(404).json({ error: "Usuario no encontrado" });
-    }
-    res.status(200).json(user.rows[0]);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Error al obtener el perfil del usuario" });
-  }
-});
-
 // Ruta para obtener los datos del perfil del usuario
-app.get("/api/users/me", authenticateToken, async (req, res) => {
+router.get("/me", authenticateToken, async (req, res) => {
   try {
-    const user = await pool.query("SELECT id, name, email, edad, comuna, acerca_de_mi FROM users WHERE id = $1", [req.user.id]);
-    if (user.rows.length === 0) {
+    const user = await getUserById(req.user.id); // Obtén los datos del usuario desde la base de datos
+    if (!user) {
       return res.status(404).json({ error: "Usuario no encontrado" });
     }
-    res.status(200).json(user.rows[0]);
+    res.json(user);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Error al obtener el perfil del usuario" });
+    console.error("Error al obtener los datos del usuario:", err);
+    res.status(500).json({ error: "Error interno del servidor" });
   }
 });
 
