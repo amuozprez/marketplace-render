@@ -85,16 +85,17 @@ app.post("/api/users/login", async (req, res) => {
 // Ruta para obtener los datos del perfil del usuario
 router.get("/me", authenticateToken, async (req, res) => {
   try {
-    const user = await getUserById(req.user.id); // Obtén los datos del usuario desde la base de datos
+    const user = await getUserById(req.user.id); // Recupera los datos del usuario desde la base de datos
     if (!user) {
       return res.status(404).json({ error: "Usuario no encontrado" });
     }
-    res.json(user);
+    res.json(user); // Devuelve los datos del usuario en formato JSON
   } catch (err) {
     console.error("Error al obtener los datos del usuario:", err);
     res.status(500).json({ error: "Error interno del servidor" });
   }
 });
+
 
 // Ruta para actualizar los datos del perfil del usuario
 app.put("/api/users/me", authenticateToken, async (req, res) => {

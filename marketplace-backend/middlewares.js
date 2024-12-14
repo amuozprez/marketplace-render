@@ -1,7 +1,6 @@
 const jwt = require("jsonwebtoken");
-const SECRET_KEY = "tu_secreto_para_jwt"; // Asegúrate de que esta clave coincide en todos los archivos que usan JWT
+const SECRET_KEY = "tu_llave_secreta"; // Asegúrate de que esta clave coincide en todos los archivos que usan JWT
 
-// Middleware para autenticar el token
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers.authorization;
   const token = authHeader && authHeader.split(" ")[1];
@@ -14,7 +13,7 @@ const authenticateToken = (req, res, next) => {
     if (err) {
       return res.status(403).json({ error: "Token inválido o expirado" });
     }
-    req.user = user; // Agregar los datos del usuario al request
+    req.user = user; // Agrega los datos del usuario al request
     next();
   });
 };
