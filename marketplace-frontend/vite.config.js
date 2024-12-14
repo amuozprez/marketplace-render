@@ -5,6 +5,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     outDir: "../marketplace-backend/public", // Ruta de salida del frontend
+    emptyOutDir: true, // Esto elimina los archivos viejos antes de construir
   },
   server: {
     proxy: {
