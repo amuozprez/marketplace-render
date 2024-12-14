@@ -10,7 +10,7 @@ const ProductoDetalle = () => {
     const fetchProductDetails = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/products/${id}`
+          `${import.meta.env.VITE_API_URL}/api/products/${id}`
         );
         if (response.ok) {
           const data = await response.json();

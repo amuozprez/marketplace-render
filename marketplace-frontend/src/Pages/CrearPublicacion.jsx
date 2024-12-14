@@ -51,7 +51,7 @@ const CrearPublicacion = () => {
     });
 
     try {
-      const response = await fetch("http://localhost:3000/api/products", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/products`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,

@@ -38,7 +38,7 @@ const Perfil = () => {
     setError(null);
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:3000/api/users/me", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users/me`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

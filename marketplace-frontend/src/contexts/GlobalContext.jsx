@@ -15,7 +15,7 @@ export const GlobalProvider = ({ children }) => {
   const login = async (token) => {
     localStorage.setItem("token", token);
     try {
-      const response = await fetch("http://localhost:3000/api/users/me", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users/me`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -47,7 +47,7 @@ export const GlobalProvider = ({ children }) => {
   // Obtener productos
   const fetchProducts = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/products");
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/products`);
       if (response.ok) {
         const data = await response.json();
         setProducts(data);
@@ -65,7 +65,7 @@ export const GlobalProvider = ({ children }) => {
     if (!token) return;
 
     try {
-      const response = await fetch("http://localhost:3000/api/favorites", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/favorites`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -89,7 +89,7 @@ export const GlobalProvider = ({ children }) => {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/api/favorites", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/favorites`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -116,7 +116,7 @@ export const GlobalProvider = ({ children }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/api/favorites/${productId}`,
+        `${import.meta.env.VITE_API_URL}/api/favorites/${productId}`,
         { method: "DELETE", headers: { Authorization: `Bearer ${token}` } }
       );
 

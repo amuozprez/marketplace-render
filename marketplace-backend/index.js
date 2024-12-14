@@ -10,6 +10,9 @@ const { authenticateToken } = require("./middlewares");
 
 const app = express();
 
+require("dotenv").config();
+const DATABASE_URL = process.env.DATABASE_URL;
+
 // Configuración
 app.use(cors());
 app.use(express.json());
@@ -275,7 +278,7 @@ app.delete("/api/favorites/:productId", authenticateToken, async (req, res) => {
 });
 
 // Iniciar el servidor
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
