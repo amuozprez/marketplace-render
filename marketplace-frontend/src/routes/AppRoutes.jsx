@@ -1,17 +1,17 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "../Pages/Home";
-import ProductoDetalle from "../pages/ProductoDetalle";
-import Perfil from "../pages/Perfil";
-import Contacto from "../pages/Contacto";
-import Nosotros from "../pages/Nosotros";
-import Login from "../pages/Login";
-import Register from "../pages/Register";
-import CrearPublicacion from "../pages/CrearPublicacion";
-import Favoritos from "../pages/MisFavoritos";
-import Ajustes from "../pages/Ajustes"; // Importamos Ajustes
-import Categorias from "../pages/Categorias";
-import MisAnuncios from "../pages/MisAnuncios"; // Importa tu componente "Mis Anuncios"
+import ProductoDetalle from "../Pages/ProductoDetalle";
+import Perfil from "../Pages/Perfil";
+import Contacto from "../Pages/Contacto";
+import Nosotros from "../Pages/Nosotros";
+import Login from "../Pages/Login";
+import Register from "../Pages/Register";
+import CrearPublicacion from "../Pages/CrearPublicacion";
+import Favoritos from "../Pages/MisFavoritos";
+import Ajustes from "../Pages/Ajustes"; // Importamos Ajustes
+import Categorias from "../Pages/Categorias";
+import MisAnuncios from "../Pages/MisAnuncios"; // Importa tu componente "Mis Anuncios"
 import Cart from "../components/Cart";
 import ProtectedRoute from "../components/ProtectedRoute";
 
